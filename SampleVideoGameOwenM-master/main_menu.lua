@@ -36,6 +36,9 @@ local bkg_image
 local playButton
 local creditsButton
 
+local soundChannel = audio.loadStream("Sounds/melodyloops-good-news.mp3")
+audio.play(soundChannel, {loops = -1})
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -90,8 +93,8 @@ function scene:create( event )
     playButton = widget.newButton( 
         {   
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/2,
-            y = display.contentHeight*7/8,
+            x = display.contentWidth*1/2,
+            y = display.contentHeight*1/8,
 
             -- Insert the images here
             defaultFile = "Images/Start Button Unpressed.png",
@@ -107,8 +110,8 @@ function scene:create( event )
     creditsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*7/8,
-            y = display.contentHeight*7/8,
+            x = display.contentWidth*1/8,
+            y = display.contentHeight*10/16,
 
             -- Insert the images here
             defaultFile = "Images/Credits Button Unpressed.png",
@@ -117,14 +120,29 @@ function scene:create( event )
             -- When the button is released, call the Credits transition function
             onRelease = CreditsTransition
         } ) 
-    
+    --------------------------------------------------------------------------------------------
     -- ADD INSTRUCTIONS BUTTON WIDGET
+    --Creating instructions button
+    instructionsButton = widgets.newButton(
+        {
+            --set the position of the button
+            x = display.contentWidth*2/8
+            y = display.contentHeight*12/16
+
+            --insert the button image
+            defaultFile = "Images/Instructions Button Unpressed.png",
+            overFile = "Images/Instructions Button Pressed.png",
+
+            --when the button is released, go to the instructions scene
+            onRelease = InstructionsTransition
+        } )    
 
     -----------------------------------------------------------------------------------------
 
     -- Associating button widgets with this scene
     sceneGroup:insert( playButton )
     sceneGroup:insert( creditsButton )
+    sceneGroup:insert( instructionsButton )
     
     -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
 
