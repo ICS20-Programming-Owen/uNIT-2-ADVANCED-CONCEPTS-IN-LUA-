@@ -23,7 +23,7 @@ local scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
  
 -- The local variables for this scene
-local james
+local lebronJames
 local scrollXSpeed = 8
 local scrollYSpeed = -3
 local bowsound = audio.loadSound("Sounds/bow.mp3")
@@ -32,17 +32,22 @@ local bowSoundsChannel
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
+scrollSpeed = 5
 
--- The function that moves the beetleship across the screen
-local function moveBeetleship()
-    james.x = james.x + scrollXSpeed
-    james.y = james.y + scrollYSpeed
+--this function moves the james image
+local function MoveLebronJames(event)
+    --add the scrollSpeed to the x-value of the ship
+    lebronJames.x = lebronJames.x + scrollSpeed
+    lebronJames.y = lebronJames.y + scrollSpeed
+    --change the transparency every time it moves so that it fades out
+    lebronJames.alpha = lebronJames.alpha - 0.0001
 end
+--Move ship will be called over and over again
+Runtime:addEventListener("enterFrame", MoveLebronJames)
 
--- The function that will go to the main menu 
-local function gotoMainMenu()
-    composer.gotoScene( "main_menu" )
-end
+local scrollSpeed = 5
+
+
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -58,14 +63,14 @@ function scene:create( event )
     display.setDefault("background", 0, 0, 0)
 
     -- Insert the beetleship image
-    james = display.newImageRect("Images/james.png", 200, 200)
+    lebronJames = display.newImageRect("Images/james.png", 200, 200)
 
     -- set the initial x and y position of the beetleship
-    james.x = 100
-    james.y = display.contentHeight/2
+    lebronJames.x = 100
+    lebronJames.y = display.contentHeight/2
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( james )
+    sceneGroup:insert( lebronJames )
 
 end -- function scene:create( event )
 
@@ -144,6 +149,9 @@ function scene:destroy( event )
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
 end -- function scene:destroy( event )
+---------------------------------------------------------------------------------------
+
+
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
@@ -154,6 +162,9 @@ scene:addEventListener( "create", scene )
 scene:addEventListener( "show", scene )
 scene:addEventListener( "hide", scene )
 scene:addEventListener( "destroy", scene )
+Runtime:addEventListener("enterFrame", MoveLebronJames)
+
+
 
 -----------------------------------------------------------------------------------------
 
