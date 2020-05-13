@@ -24,14 +24,21 @@ local scene = composer.newScene( sceneName )
  
 -- The local variables for this scene
 local lebronJames
-local scrollXSpeed = 8
-local scrollYSpeed = -3
+local scrollXSpeed = 1
+local scrollYSpeed = 1
 local bowsound = audio.loadSound("Sounds/bow.mp3")
 local bowSoundsChannel
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
+--transition to the next scene 
+local function gotomMainMenu()
+
+    composer.gotoScene( "main_menu", {effect = "flipFadeOutIn", time = 500})
+end
+-------------------------------------------------------------------------------------
 scrollSpeed = 5
 
 --this function moves the james image
@@ -42,11 +49,8 @@ local function MoveLebronJames(event)
     --change the transparency every time it moves so that it fades out
     lebronJames.alpha = lebronJames.alpha - 0.0001
 end
---Move ship will be called over and over again
-Runtime:addEventListener("enterFrame", MoveLebronJames)
 
 local scrollSpeed = 5
-
 
 
 -----------------------------------------------------------------------------------------
@@ -98,7 +102,7 @@ function scene:show( event )
         bowSoundsChannel = audio.play(bowSounds )
 
         -- Call the moveBeetleship function as soon as we enter the frame.
-        Runtime:addEventListener("enterFrame", moveJames)
+        Runtime:addEventListener("enterFrame", MoveLebronJames)
 
         -- Go to the main menu screen after the given time.
         timer.performWithDelay ( 3000, gotoMainMenu)          
@@ -129,9 +133,8 @@ function scene:hide( event )
     elseif ( phase == "did" ) then
         
         -- stop the jungle sounds channel for this screen
-        audio.stop(bowSoundsChannel)
+        audio.stop(jungleSoundsChannel)
     end
-
 end --function scene:hide( event )
 
 -----------------------------------------------------------------------------------------
@@ -166,6 +169,8 @@ Runtime:addEventListener("enterFrame", MoveLebronJames)
 
 
 
+
 -----------------------------------------------------------------------------------------
 
 return scene
+

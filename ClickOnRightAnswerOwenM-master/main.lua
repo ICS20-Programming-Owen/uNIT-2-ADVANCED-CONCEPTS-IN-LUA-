@@ -1,13 +1,13 @@
 -----------------------------------------------------------------------------------------
---
 -- main.lua
--- Created by: Owen
--- Date: May 4, 2020
+-- Created by: Gil Robern
+-- Modified by: Owen Meagher
+-- Date: May 13, 2020
 -- Description: This calls the splash screen of the app to load itself.
 -----------------------------------------------------------------------------------------
 
 -- Hiding Status Bar
--- HIDE THE STATUS BAR
+display.setStatusBar( display.HiddenStatusBar )
 
 -----------------------------------------------------------------------------------------
 
@@ -16,5 +16,4 @@ local composer = require( "composer" )
 
 -----------------------------------------------------------------------------------------
 
--- Go to the intro screen
-composer.gotoScene( "splash_screen" )
+composer.gotoScene( "level1_screen" )
