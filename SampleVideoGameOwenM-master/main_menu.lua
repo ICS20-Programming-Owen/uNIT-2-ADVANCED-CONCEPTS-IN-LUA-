@@ -35,6 +35,7 @@ local scene = composer.newScene( sceneName )
 local bkg_image
 local playButton
 local creditsButton
+local instructionsButton
 
 local soundChannel = audio.loadStream("Sounds/melodyloops-good-news.mp3")
 audio.play(soundChannel, {loops = -1})
@@ -126,8 +127,8 @@ function scene:create( event )
     instructionsButton = widgets.newButton(
         {
             --set the position of the button
-            x = display.contentWidth*2/8
-            y = display.contentHeight*12/16
+            x = display.contentWidth*2/8,
+            y = display.contentHeight*12/16,
 
             --insert the button image
             defaultFile = "Images/Instructions Button Unpressed.png",
