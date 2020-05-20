@@ -2,8 +2,8 @@
 --
 -- level1_screen.lua
 -- Created by: Gil Robern
--- Modified by: Your Name
--- Date: Month Day, Year
+-- Modified by: Owen
+-- Date: May, 13, 2020
 -- Description: This is the level 1 screen of the game.
 -----------------------------------------------------------------------------------------
 
