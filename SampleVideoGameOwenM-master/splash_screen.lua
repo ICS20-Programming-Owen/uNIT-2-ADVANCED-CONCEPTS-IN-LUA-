@@ -39,7 +39,7 @@ local function gotomMainMenu()
     composer.gotoScene( "main_menu", {effect = "flipFadeOutIn", time = 500})
 end
 -------------------------------------------------------------------------------------
-scrollSpeed = 5
+scrollSpeed = 2
 
 --this function moves the james image
 local function MoveLebronJames(event)
