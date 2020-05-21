@@ -181,6 +181,8 @@ local function onCollision( self, event )
             (event.target.myName == "spikes3") then
 
             -- add sound effect here
+            local soundChannel = audio.loadStream("Sounds/Pop.mp3")
+            audio.play(soundChannel, {loops = 1})
 
             -- remove runtime listeners that move the character
             RemoveArrowEventListeners()

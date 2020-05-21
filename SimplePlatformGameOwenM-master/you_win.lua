@@ -17,7 +17,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "you_lose"
+sceneName = "you_win"
 
 -----------------------------------------------------------------------------------------
 
@@ -31,7 +31,7 @@ local scene = composer.newScene( sceneName )
 -- local variables for the scene
 local bkg
 
- local soundChannel = audio.loadStream("Sounds/YouLose.mp3")
+ local soundChannel = audio.loadStream("Sounds/Cheer.mp3")
 audio.play(soundChannel, {loops = -1})
 
 
@@ -48,7 +48,7 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- Display background
-    bkg = display.newImage("Images/YouLose.png")
+    bkg = display.newImage("Images/YouWin.png")
     bkg.x = display.contentCenterX
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth

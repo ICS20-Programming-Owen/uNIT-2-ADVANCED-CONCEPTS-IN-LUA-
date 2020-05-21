@@ -46,6 +46,8 @@ local answerText
 local wrongAnswerText1
 local wrongAnswerText2
 
+local wrongText4
+
 local answerPosition = 1
 local bkg
 local cover
@@ -185,10 +187,13 @@ local function PositionAnswers()
             
     end
 end
+--------------------------------------------------------------------------------
+
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
+
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
