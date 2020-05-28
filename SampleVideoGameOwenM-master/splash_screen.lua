@@ -64,10 +64,10 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- set the background to be black
-    display.setDefault("background", 0, 0, 0)
+    display.setDefault("background", 255/255, 28/255, 9/255)
 
     -- Insert the beetleship image
-    lebronJames = display.newImageRect("Images/james.png", 200, 200)
+    lebronJames = display.newImageRect("Images/untitled.png", 500, 500)
 
     -- set the initial x and y position of the beetleship
     lebronJames.x = 100
@@ -99,7 +99,9 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then
         -- start the splash screen music
-        bowSoundsChannel = audio.play(bowSounds )
+         local soundChannel = audio.loadStream("Sounds/melodyloops-good-news.mp3") 
+         audio.play(soundChannel, {loops = 0})
+ 
 
         -- Call the moveBeetleship function as soon as we enter the frame.
         Runtime:addEventListener("enterFrame", MoveLebronJames)
@@ -133,7 +135,7 @@ function scene:hide( event )
     elseif ( phase == "did" ) then
         
         -- stop the jungle sounds channel for this screen
-        audio.stop(jungleSoundsChannel)
+        audio.stop(SoundChannel)
     end
 end --function scene:hide( event )
 
