@@ -32,14 +32,11 @@ local scene = composer.newScene( sceneName )
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
-local image
+local bkg_image
 local playButton
 local creditsButton
-local instructionsButton
-
 local soundChannel = audio.loadStream("Sounds/melodyloops-good-news.mp3")
 audio.play(soundChannel, {loops = -1})
-
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -48,6 +45,7 @@ audio.play(soundChannel, {loops = -1})
 local function CreditsTransition( )       
     composer.gotoScene( "credits_screen", {effect = "flipFadeOutIn", time = 500})
 end 
+
 
 -----------------------------------------------------------------------------------------
 
@@ -73,18 +71,18 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    image = display.newImage("Images/untitled.png")
-    image.x = display.contentCenterX
-    image.y = display.contentCenterY
-    image.width = display.contentWidth
-    image.height = display.contentHeight
+    bkg_image = display.newImage("Images/untitled.png")
+    bkg_image.x = display.contentCenterX
+    bkg_image.y = display.contentCenterY
+    bkg_image.width = display.contentWidth
+    bkg_image.height = display.contentHeight
 
-fjfjf
+
     -- Associating display objects with this scene 
-    
+    sceneGroup:insert( bkg_image )
 
     -- Send the background image to the back layer so all other objects can be on top
-    image:toBack()
+    bkg_image:toBack()
 
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
@@ -94,8 +92,8 @@ fjfjf
     playButton = widget.newButton( 
         {   
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*1/2,
-            y = display.contentHeight*1/8,
+            x = display.contentWidth/2,
+            y = display.contentHeight*7/8,
 
             -- Insert the images here
             defaultFile = "Images/Start Button Unpressed.png",
@@ -111,8 +109,8 @@ fjfjf
     creditsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*1/8,
-            y = display.contentHeight*10/16,
+            x = display.contentWidth*7/8,
+            y = display.contentHeight*7/8,
 
             -- Insert the images here
             defaultFile = "Images/Credits Button Unpressed.png",
@@ -121,29 +119,14 @@ fjfjf
             -- When the button is released, call the Credits transition function
             onRelease = CreditsTransition
         } ) 
-    --------------------------------------------------------------------------------------------
+    
     -- ADD INSTRUCTIONS BUTTON WIDGET
-    --Creating instructions button
-    instructionsButton = widgets.newButton(
-        {
-            --set the position of the button
-            x = display.contentWidth*2/8,
-            y = display.contentHeight*12/16,
-
-            --insert the button image
-            defaultFile = "Images/Instructions Button Unpressed.png",
-            overFile = "Images/Instructions Button Pressed.png",
-
-            --when the button is released, go to the instructions scene
-            onRelease = InstructionsTransition
-        } )    
 
     -----------------------------------------------------------------------------------------
 
     -- Associating button widgets with this scene
     sceneGroup:insert( playButton )
     sceneGroup:insert( creditsButton )
-    sceneGroup:insert( instructionsButton )
     
     -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
 
