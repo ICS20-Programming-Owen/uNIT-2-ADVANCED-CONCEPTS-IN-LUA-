@@ -74,6 +74,12 @@ local theBall
 
 local questionsAnswered = 0
 
+local soundChannel = audio.loadStream("Sounds/melodyloops-good-news.mp3")
+audio.play(soundChannel, {loops = -1})
+
+local dieSound = audio.loadSound("Sounds/BoingSoundEffect.mp3")
+audio.play(soundChannel, {loops = 0})
+
 -----------------------------------------------------------------------------------------
 -- LOCAL SCENE FUNCTIONS
 ----------------------------------------------------------------------------------------- 

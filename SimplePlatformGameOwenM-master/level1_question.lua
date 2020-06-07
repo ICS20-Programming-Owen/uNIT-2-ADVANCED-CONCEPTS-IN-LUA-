@@ -60,6 +60,13 @@ local Y2 = display.contentHeight*5.5/7
 local userAnswer
 local textTouched = false
 
+local correctSound = audio.loadSound("Sounds/Pop.mp3")
+audio.play(soundChannel, {loops = 0})
+
+
+local incorrectSound = audio.loadSound("Sounds/Grease_Monkey.mp3")
+audio.play(soundChannel, {loops = 0})
+
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
