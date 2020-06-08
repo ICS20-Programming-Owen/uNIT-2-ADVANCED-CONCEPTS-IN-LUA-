@@ -22,6 +22,11 @@ local physics = require("physics")
 -- Naming Scene
 sceneName = "level1_screen"
 
+--------------------------------------
+--GLOBAL VARIABLES
+----------------------------------------------------
+sound on = true
+
 -----------------------------------------------------------------------------------------
 
 -- Creating Scene Object
@@ -80,10 +85,24 @@ audio.play(soundChannel, {loops = -1})
 local dieSound = audio.loadSound("Sounds/BoingSoundEffect.mp3")
 audio.play(soundChannel, {loops = 0})
 
+local mute button 
+local unmute button
+
 -----------------------------------------------------------------------------------------
 -- LOCAL SCENE FUNCTIONS
 ----------------------------------------------------------------------------------------- 
  
+local function Mute(touch)
+    if (touch.phase == "ended") then 
+        --pause the sound
+        audio.pause(bkgMusic)
+        --
+        soundOn = false
+        --hide the mute button
+        muteButton.isVisible = false
+        --make the mute 6button visible
+end end        
+
 -- When right arrow is touched, move character right
 local function right (touch)
     motionx = SPEED
@@ -339,6 +358,46 @@ function ResumeGame()
 
 end
 
+
+--------------------------------------------------------------------------
+function scene:show( event )
+
+    local sceneGroup = self.view
+
+    ----------------------------------------------------------------------------
+
+    local phase = event.phase
+
+    ---------------------------------------------------------------------------
+
+    if ( phase == "will" ) then
+
+   --------------------------------------------------------------------------
+
+    elseif ( phase == "did" ) then 
+      bkgMusicChannel = audio.play(bkgMusic, {loops= -1})
+      muteButton:addEventListener("touch", Mute)
+end end
+---------------------------------------------------------------------------------
+function scene:hide( event )
+
+    local sceneGroup = self.view
+
+    ----------------------------------------------------------------------------
+
+    local phase = event.phase
+
+    ---------------------------------------------------------------------------
+
+    if ( phase == "will" ) then
+        audio.stop(bkgMusicChannel)
+
+   --------------------------------------------------------------------------
+
+    elseif ( phase == "did" ) then 
+      muteButton:removeEventListener("touch", Mute)
+end end
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -373,6 +432,12 @@ function scene:create( event )
     platform3 = display.newImageRect("Images/Level-1Platform1.png", 180, 50)
     platform3.x = display.contentWidth *3 / 5
     platform3.y = display.contentHeight * 3.5 / 5
+
+    --creating mute button 
+    muteButton = display.newImageRect( "Images/MuteButton.png",200, 200)
+    muteButton.x = display.contentWidth*1.5/10
+    muteButton.y = display.contentHeight*1.3/10
+    muteButton.isVisible = true
         
     sceneGroup:insert( platform3 )
 
