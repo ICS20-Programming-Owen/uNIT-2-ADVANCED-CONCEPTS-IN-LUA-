@@ -27,6 +27,8 @@ sceneName = "level1_screen"
 -- Creating Scene Object
 local scene = composer.newScene( sceneName )
 
+local soundChannel = audio.loadStream("Sounds/melodyloops-good-news.mp3")
+audio.play(soundChannel, {loops = -1})
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
