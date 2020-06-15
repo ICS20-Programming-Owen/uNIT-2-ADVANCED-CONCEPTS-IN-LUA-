@@ -37,7 +37,10 @@ local questionText
 --the alternate numbers randomly generated
 local correctAnswer
 local alternateAnswer1
-local alternateAnswer2    
+local alternateAnswer2   
+
+local soundChannel = audio.loadStream("Sounds/melodyloops-good-news.mp3")
+audio.play(soundChannel, {loops = -1}) 
 
 -- Variables containing the user answer and the actual answer
 local userAnswer
@@ -78,8 +81,8 @@ local function DisplayQuestion()
     local randomNumber2
 
     --set random numbers
-    randomNumber1 = math.random(2, 15)
-    randomNumber2 = math.random(2, 15)
+    randomNumber1 = math.random(1, 25)
+    randomNumber2 = math.random(1, 25)
 
     --calculate answer
     correctAnswer = randomNumber1 + randomNumber2
@@ -101,7 +104,7 @@ local function DetermineAlternateAnswers()
 
         
     -- generate incorrect answer and set it in the textbox
-    alternateAnswer1 = correctAnswer + math.random(3, 5)
+    alternateAnswer1 = correctAnswer + math.random(1, 25)
     alternateAnswerBox1.text = alternateAnswer1
 
     -- generate incorrect answer and set it in the textbox
@@ -130,7 +133,7 @@ local function PositionAnswers()
     -- random position 1
     if (randomPosition == 1) then
         -- set the new y-positions of each of the answers
-        answerbox.y = display.contentHeight * 0.4
+        answerbox.y = display.contentHeight * 0.8
 
         --alternateAnswerBox2
         alternateAnswerBox2.y = display.contentHeight * 0.70
@@ -147,7 +150,7 @@ local function PositionAnswers()
     -- random position 2
     elseif (randomPosition == 2) then
 
-        answerbox.y = display.contentHeight * 0.55
+        answerbox.y = display.contentHeight * 0.8
         
         --alternateAnswerBox2
         alternateAnswerBox2.y = display.contentHeight * 0.4
